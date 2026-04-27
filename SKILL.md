@@ -55,7 +55,7 @@ with sync_playwright() as p:
     page = browser.new_page(viewport={'width': 1920, 'height': 1080})
     
     page.set_extra_http_headers({
-        'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'
+        'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'
     })
     
     page.goto(url, timeout=120000)
@@ -120,7 +120,7 @@ cd /tmp/studocu_images
 while IFS= read -r url; do
   filename=$(echo "$url" | grep -oP 'bg[^?]+')
   curl -s --proxy socks5://127.0.0.1:9050 \
-    -A "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36" \
+    -A "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36" \
     -o "$filename" "$url" &
   
   if (( $(jobs -r -p | wc -l) >= 5 )); then
