@@ -2,6 +2,23 @@
 
 Download documents from Studocu when blocked by Cloudflare, by scraping lazy-loaded page images in scroll order and combining into PDF.
 
+## For AI Agents
+
+If you don't know how to use this, just share the repo link with your agent:
+
+```
+https://github.com/koc-Z3/studoc-downloader-skill
+```
+
+## Requirements
+
+- **Python 3.8+**
+- **pip** (Python package manager)
+- **bash** or bash-compatible shell (Linux/macOS/WSL on Windows)
+- **Tor** (running on localhost:9050)
+- **curl** (for downloading)
+- **grep**, **wc** (standard Unix tools)
+
 ## Quick Start
 
 ```bash
@@ -18,15 +35,6 @@ bash download.sh
 python3 combine.py
 ```
 
-## Requirements
-
-- **Python 3.8+**
-- **pip** (Python package manager)
-- **bash** or bash-compatible shell (Linux/macOS/WSL on Windows)
-- **Tor** (running on localhost:9050)
-- **curl** (for downloading)
-- **grep**, **wc** (standard Unix tools)
-
 ### Python Packages
 ```bash
 pip install -r requirements.txt
@@ -42,14 +50,6 @@ playwright install chromium
 ├── discover.py      # Scroll page, collect image URLs
 ├── download.sh      # Download images via Tor
 └── combine.py       # Combine images into PDF
-```
-
-## For AI Agents
-
-If you don't know how to use this, just share the repo link with your agent:
-
-```
-https://github.com/koc-Z3/studoc-downloader-skill
 ```
 
 The agent should read `SKILL.md` for full documentation and run the scripts in order.
