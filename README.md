@@ -46,15 +46,13 @@ playwright install chromium
 
 ## For AI Agents
 
-Just share this repo link with your agent:
+If you don't know how to use this, just share the repo link with your agent:
 
 ```
 https://github.com/koc-Z3/studoc-downloader-skill
 ```
 
-The agent should:
-1. Read `SKILL.md` for full documentation
-2. Run `discover.py`, `download.sh`, and `combine.py` in sequence
+The agent should read `SKILL.md` for full documentation and run the scripts in order.
 
 ## Custom Paths
 
