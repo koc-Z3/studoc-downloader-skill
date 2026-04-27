@@ -22,41 +22,63 @@ Download documents from Studocu when the site blocks direct access or requires l
 ```
 https://doc-assets.studocu.com/{hash}/html/bg{N}.png?Policy=...&Signature=...&Key-Pair-Id=...
 ```
-- Naming: bg1, bg2... bg9, bga, bgb... bgf, bg10, bg11... bg3f (hex for pages 10-15)
-- 63 pages = bg1 through bg3f
 
 ### Important: Image naming does NOT equal page order
 The bg* names appear sequential but pages may not load in order. Must use scroll position to determine actual page order.
 
 ## Prerequisites
 
-- Tor running: `pgrep -x tor || tor &`
-- Playwright installed
-- img2pdf: `pip install img2pdf Pillow`
-
-## Complete End-to-End Workflow
-
-### 1. Ensure Tor is running
 ```bash
+# Tor must be running
 pgrep -x tor || tor &
+
+# Install dependencies
+pip install playwright img2pdf Pillow
+playwright install chromium
 ```
 
-### 2. Discover all page images in scroll order
+## Usage
+
+### Step 1: Discover pages
 ```bash
-python3 discover.py "STUDOCU_URL_HERE"
+python3 discover.py "STUDOCU_URL" [--output /path/to/urls.txt]
+```
+- Uses Tor proxy by default (configure PROXY in script if needed)
+- Outputs to `/tmp/ordered_urls.txt` by default (or custom path)
+
+### Step 2: Download images
+```bash
+bash download.sh                     # Uses defaults
+bash download.sh /path/to/urls.txt   # Custom urls file
+bash download.sh /path/to/urls.txt /output/dir  # Custom output dir
+```
+- Downloads to `/tmp/studocu_images/` by default
+- Uses Tor proxy, 5 concurrent downloads by default
+
+### Step 3: Combine into PDF
+```bash
+python3 combine.py                           # Uses defaults
+python3 combine.py /urls.txt /images/ /out.pdf  # All custom
 ```
 
-### 3. Download all images
-```bash
-bash download.sh
-```
+## Configuration
 
-### 4. Combine into PDF
-```bash
-python3 combine.py
-```
+All scripts have configurable constants at the top:
 
-### 5. Deliver
-```bash
-zip -j /tmp/output.zip /tmp/studocu_document.pdf
-```
+**discover.py**
+- `PROXY` - Tor proxy address
+- `USER_AGENT` - Browser user agent
+- `VIEWPORT` - Browser viewport size
+- `SCROLL_STEP` - Pixels per scroll step
+- `INITIAL_WAIT` - Seconds to wait for Cloudflare
+
+**download.sh**
+- `PROXY` - Tor proxy address
+- `USER_AGENT` - Browser user agent
+- `MAX_CONCURRENT` - Concurrent download limit
+
+## Cross-Platform
+
+- Scripts use `tempfile` and `os.path.join` for OS-agnostic paths
+- Works on Linux, macOS, and Windows (with Git Bash or WSL)
+- Bash scripts require standard Unix tools (curl, grep)
