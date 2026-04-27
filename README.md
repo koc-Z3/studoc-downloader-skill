@@ -18,6 +18,21 @@ bash download.sh
 python3 combine.py
 ```
 
+## Requirements
+
+- **Python 3.8+**
+- **pip** (Python package manager)
+- **bash** or bash-compatible shell (Linux/macOS/WSL on Windows)
+- **Tor** (running on localhost:9050)
+- **curl** (for downloading)
+- **grep**, **wc** (standard Unix tools)
+
+### Python Packages
+```bash
+pip install -r requirements.txt
+playwright install chromium
+```
+
 ## Project Structure
 
 ```
@@ -29,12 +44,17 @@ python3 combine.py
 └── combine.py       # Combine images into PDF
 ```
 
-## Setup
+## For AI Agents
 
-```bash
-pip install -r requirements.txt
-playwright install chromium
+Just share this repo link with your agent:
+
 ```
+https://github.com/koc-Z3/studoc-downloader-skill
+```
+
+The agent should:
+1. Read `SKILL.md` for full documentation
+2. Run `discover.py`, `download.sh`, and `combine.py` in sequence
 
 ## Custom Paths
 
