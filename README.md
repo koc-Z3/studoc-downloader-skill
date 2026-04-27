@@ -1,4 +1,4 @@
-# Studocu Downloader
+# Studocu Downloader For Agents
 
 Download documents from Studocu when blocked by Cloudflare, by scraping lazy-loaded page images in scroll order and combining into PDF.
 
